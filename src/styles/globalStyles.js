@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import colors from './colors';
 
 const GlobalStyle = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -33,6 +34,9 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+    font-family: 'Lato', sans-serif;
+    background-color: ${colors.black};
+    color: white;
 }
 ol, ul {
 	list-style: none;
@@ -51,6 +55,10 @@ table {
 }
 *{
     box-sizing: border-box;
+}
+input {
+	border: none;
+	outline: none;
 }
 `;
 
