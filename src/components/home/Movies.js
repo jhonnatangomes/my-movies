@@ -1,55 +1,38 @@
 import styled from 'styled-components';
-import soul from '../../assets/soul.jpg';
-import knivesOut from '../../assets/knives-out.jpg';
-import onward from '../../assets/onward.jpeg';
-import mulan from '../../assets/mulan.jpeg';
+import { useEffect, useState } from 'react';
+import { getPopularMovies, getPopularTvShows } from '../../services/tmdbApi';
+import config from '../../config/tmdbConfig.json';
 
 export default function Movies({ category }) {
-    const movies = {
-        movies: [
-            {
-                img: soul,
-                name: 'Soul (2020)',
-            },
-            {
-                img: knivesOut,
-                name: 'Knives Out (2019)',
-            },
-            {
-                img: onward,
-                name: 'Onward (2020)',
-            },
-            {
-                img: mulan,
-                name: 'Mulan (2020)',
-            },
-            {
-                img: soul,
-                name: 'Soul (2020)',
-            },
-            {
-                img: knivesOut,
-                name: 'Knives Out (2019)',
-            },
-            {
-                img: onward,
-                name: 'Onward (2020)',
-            },
-            {
-                img: mulan,
-                name: 'Mulan (2020)',
-            },
-        ],
+    const [movies, setMovies] = useState({
+        movies: [],
         tvShows: [],
-        documentaries: [],
-        sports: [],
-    };
+    });
+
+    useEffect(() => {
+        if (category === 'movies') {
+            const promise = getPopularMovies();
+            promise.then((res) =>
+                setMovies({ ...movies, movies: res.data.results })
+            );
+        }
+        if (category === 'tvShows') {
+            const promise = getPopularTvShows();
+            promise.then((res) =>
+                setMovies({ ...movies, tvShows: res.data.results })
+            );
+        }
+    }, []);
+
     return (
         <MoviesContainer>
             {movies[category].map((movie, i) => (
                 <div key={i}>
-                    <img src={movie.img} alt={movie.name} />
-                    <span>{movie.name}</span>
+                    <img
+                        src={`${config.images.secure_base_url}${config.images.poster_sizes[6]}${movie.poster_path}`}
+                        alt={movie.title || movie.name}
+                    />
+                    <span>{movie.title || movie.name}</span>
                 </div>
             ))}
         </MoviesContainer>
@@ -65,7 +48,6 @@ const MoviesContainer = styled.div`
     & > div:nth-child(4n),
     & > div:nth-child(4n + 1) {
         width: 154px;
-        height: 215px;
         margin-bottom: 20px;
 
         img {
@@ -80,7 +62,6 @@ const MoviesContainer = styled.div`
     & > div:nth-child(4n + 2),
     & > div:nth-child(4n + 3) {
         width: 154px;
-        height: 191px;
         margin-bottom: 20px;
 
         img {

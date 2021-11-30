@@ -7,6 +7,7 @@ import Movies from './Movies';
 
 export default function Home() {
     const [category, setCategory] = useState('movies');
+
     return (
         <PageContainer>
             <Title>Encontre filmes, séries de TV e mais...</Title>
