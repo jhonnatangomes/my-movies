@@ -5,6 +5,7 @@ const colors = {
     textGray: '#E2E2E2',
     gradientSelected:
         'linear-gradient(244.07deg, #FF8F71 47.24%, #EF2D1A 120.34%)',
+    iconBlack: '#DADADA',
 };
 
 export default colors;

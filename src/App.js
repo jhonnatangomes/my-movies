@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import GlobalStyle from './styles/globalStyles';
-import { Home } from './components';
+import { Home, NavBar } from './components';
 
 export default function App() {
     return (
@@ -9,6 +9,7 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
             </Routes>
+            <NavBar />
         </BrowserRouter>
     );
 }
