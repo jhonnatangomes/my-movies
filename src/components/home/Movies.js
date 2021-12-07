@@ -22,7 +22,7 @@ export default function Movies({ category }) {
                 setMovies({ ...movies, tvShows: res.data.results })
             );
         }
-    }, []);
+    }, [category]);
 
     return (
         <MoviesContainer>
