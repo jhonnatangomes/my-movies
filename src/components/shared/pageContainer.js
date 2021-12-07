@@ -3,6 +3,7 @@ import colors from '../../styles/colors';
 
 const PageContainer = styled.div`
     padding: 0 24px;
+    margin-bottom: 70px;
 
     span {
         font-size: 16px;

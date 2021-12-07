@@ -1,14 +1,15 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import GlobalStyle from './styles/globalStyles';
-import { Home } from './components';
+import { Home, NavBar } from './components';
 
 export default function App() {
     return (
         <BrowserRouter>
             <GlobalStyle />
             <Routes>
-                <Route path="/home" element={<Home />} />
+                <Route path="/" element={<Home />} />
             </Routes>
+            <NavBar />
         </BrowserRouter>
     );
 }

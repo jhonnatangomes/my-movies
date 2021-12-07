@@ -3,10 +3,10 @@ import { useState } from 'react';
 import colors from '../../styles/colors';
 
 export default function Categories({ setCategory }) {
-    const [selected, setSelected] = useState([true, false, false, false]);
+    const [selected, setSelected] = useState([true, false]);
 
     function handleClick(i) {
-        const newSelected = [false, false, false, false];
+        const newSelected = [false, false];
         newSelected[i] = true;
         setSelected(newSelected);
         switch (i) {
@@ -15,12 +15,6 @@ export default function Categories({ setCategory }) {
                 break;
             case 1:
                 setCategory('tvShows');
-                break;
-            case 2:
-                setCategory('documentaries');
-                break;
-            case 3:
-                setCategory('sports');
                 break;
             default:
                 break;
@@ -39,25 +33,13 @@ export default function Categories({ setCategory }) {
                 </span>
                 <SelectedUnderline selected={selected[1]} />
             </Category>
-            <Category selected={selected[2]}>
-                <span onClick={() => handleClick(2)} selected={selected[2]}>
-                    Documentários
-                </span>
-                <SelectedUnderline selected={selected[2]} />
-            </Category>
-            <Category selected={selected[3]}>
-                <span onClick={() => handleClick(3)} selected={selected[3]}>
-                    Esportes
-                </span>
-                <SelectedUnderline selected={selected[3]} />
-            </Category>
         </CategoriesContainer>
     );
 }
 
 const CategoriesContainer = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 24px;
 `;
 
