@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import colors from '../../styles/colors';
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect } from 'react';
 
 export default function Categories({ category, setCategory }) {
     const [selected, setSelected] = useState([false, false]);
