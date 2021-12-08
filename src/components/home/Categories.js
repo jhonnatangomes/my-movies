@@ -49,7 +49,7 @@ const CategoriesContainer = styled.div`
 const Category = styled.div`
     span {
         background: ${({ selected }) =>
-            selected ? colors.gradientSelected : 'white'};
+            selected ? colors.gradientSelected : colors.textGray};
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         transition: background 0.5s ease;

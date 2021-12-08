@@ -22,7 +22,6 @@ export default function RunTimeAndScore({ details }) {
 const Container = styled.div`
     font-size: 12px;
     line-height: 14.5px;
-    color: ${colors.runTimeGray};
     display: flex;
     margin-bottom: 15px;
 
@@ -34,6 +33,7 @@ const Container = styled.div`
             font-size: 12px;
             margin-left: 6px;
             margin-right: 18px;
+            color: ${colors.runTimeGray};
         }
     }
 `;

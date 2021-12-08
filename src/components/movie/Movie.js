@@ -4,21 +4,30 @@ import { useLocation, useParams } from 'react-router';
 
 import { PageContainer } from '../shared';
 import { getDetails } from '../../services/getInfo';
-import { RunTimeAndScore, ReleaseDateAndGenres, AvailableStreams } from '..';
+import {
+    RunTimeAndScore,
+    ReleaseDateAndGenres,
+    AvailableStreams,
+    RelatedMovies,
+} from '..';
 import colors from '../../styles/colors';
 import config from '../../config/tmdbConfig.json';
 
 export default function Movie() {
     const [details, setDetails] = useState(null);
     const [watchProviders, setWatchProviders] = useState(null);
+    const [related, setRelated] = useState(null);
     const { id } = useParams();
     const path = useLocation();
+
+    console.log(related);
 
     useEffect(() => {
         (async function () {
             const result = await getDetails(path, id);
             setDetails(result.details);
             setWatchProviders(result.watchProviders);
+            setRelated(result.related);
         })();
     }, []);
 
@@ -43,6 +52,7 @@ export default function Movie() {
                     <span>Sinopse</span>
                     <p>{details?.overview}</p>
                 </Description>
+                <RelatedMovies related={related} />
             </PageContainer>
         </>
     );
@@ -51,7 +61,6 @@ export default function Movie() {
 const PosterImg = styled.img`
     width: 100%;
     height: 287px;
-
     object-fit: cover;
 `;
 
@@ -76,5 +85,6 @@ const Description = styled.div`
         font-size: 14px;
         line-height: 18px;
         letter-spacing: 0.02em;
+        color: ${colors.runTimeGray};
     }
 `;
