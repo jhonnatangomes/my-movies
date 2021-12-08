@@ -29,7 +29,12 @@ export default function Movies({ category }) {
     return (
         <MoviesContainer>
             {movies[category].map((movie, i) => (
-                <div key={i} onClick={() => navigate(`/movie/${movie.id}`)}>
+                <div
+                    key={i}
+                    onClick={() =>
+                        navigate(`/${category.slice(0, -1)}/${movie.id}`)
+                    }
+                >
                     <img
                         src={`${config.images.secure_base_url}${config.images.poster_sizes[6]}${movie.poster_path}`}
                         alt={movie.title || movie.name}

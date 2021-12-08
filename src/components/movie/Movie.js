@@ -1,19 +1,29 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import styled from 'styled-components';
 import { AiOutlineClockCircle, AiFillStar } from 'react-icons/ai';
 import config from '../../config/tmdbConfig.json';
-import { getMovieDetails, getRelatedMovies } from '../../services/tmdbApi';
+import { getMovieDetails, getTvShowDetails } from '../../services/tmdbApi';
 import { PageContainer } from '../shared';
+import convertDate from '../../helpers/convertDate';
 import colors from '../../styles/colors';
 
 export default function Movie() {
     const [details, setDetails] = useState(null);
     const { id } = useParams();
+    const path = useLocation();
+
+    console.log(details);
 
     useEffect(() => {
-        const promise = getMovieDetails(id);
-        promise.then((res) => setDetails(res.data));
+        if (path.pathname.includes('movie')) {
+            const promise = getMovieDetails(id);
+            promise.then((res) => setDetails(res.data));
+        }
+        if (path.pathname.includes('tvShow')) {
+            const promise = getTvShowDetails(id);
+            promise.then((res) => setDetails(res.data));
+        }
     }, []);
 
     return (
@@ -26,11 +36,14 @@ export default function Movie() {
                 ''
             )}
             <PageContainer>
-                <MovieTitle>{details?.title}</MovieTitle>
+                <MovieTitle>{details?.title || details?.name}</MovieTitle>
                 <RunTimeAndScore>
                     <div>
                         <AiOutlineClockCircle />
-                        <span>{details?.runtime} minutos</span>
+                        <span>
+                            {details?.runtime || details?.episode_run_time}{' '}
+                            minutos
+                        </span>
                     </div>
                     <div>
                         <AiFillStar />
@@ -44,7 +57,10 @@ export default function Movie() {
                             Data de <br />
                             lançamento
                         </span>
-                        <p>{details?.release_date}</p>
+                        <p>
+                            {convertDate(details?.release_date) ||
+                                convertDate(details?.first_air_date)}
+                        </p>
                     </div>
                     <div>
                         <span>Gêneros</span>
