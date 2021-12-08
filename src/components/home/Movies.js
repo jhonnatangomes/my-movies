@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
-import config from '../../config/tmdbConfig.json';
 import { getHomePageInfo } from '../../services/getInfo';
+import createImageUrl from '../../helpers/createImageUrl';
 
 export default function Movies({ category }) {
     const [movies, setMovies] = useState({
@@ -27,7 +27,7 @@ export default function Movies({ category }) {
                     onClick={() => navigate(`/${category}/${movie.id}`)}
                 >
                     <img
-                        src={`${config.images.secure_base_url}${config.images.poster_sizes[6]}${movie.poster_path}`}
+                        src={createImageUrl(movie.poster_path)}
                         alt={movie.title || movie.name}
                     />
                     <span>{movie.title || movie.name}</span>

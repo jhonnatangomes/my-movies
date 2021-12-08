@@ -11,7 +11,7 @@ import {
     RelatedMovies,
 } from '..';
 import colors from '../../styles/colors';
-import config from '../../config/tmdbConfig.json';
+import createImageUrl from '../../helpers/createImageUrl';
 
 export default function Movie() {
     const [details, setDetails] = useState(null);
@@ -19,8 +19,6 @@ export default function Movie() {
     const [related, setRelated] = useState(null);
     const { id } = useParams();
     const path = useLocation();
-
-    console.log(related);
 
     useEffect(() => {
         (async function () {
@@ -34,9 +32,7 @@ export default function Movie() {
     return (
         <>
             {details ? (
-                <PosterImg
-                    src={`${config.images.secure_base_url}${config.images.backdrop_sizes[3]}${details.backdrop_path}`}
-                />
+                <PosterImg src={createImageUrl(details.backdrop_path)} />
             ) : (
                 ''
             )}

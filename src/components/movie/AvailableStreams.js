@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import config from '../../config/tmdbConfig.json';
+import createImageUrl from '../../helpers/createImageUrl';
 
 export default function AvailableStreams({ watchProviders }) {
     return (
@@ -10,7 +10,7 @@ export default function AvailableStreams({ watchProviders }) {
                     watchProviders.flatrate.map((stream, i) => (
                         <div key={i}>
                             <img
-                                src={`${config.images.secure_base_url}${config.images.logo_sizes[6]}${stream.logo_path}`}
+                                src={createImageUrl(stream.logo_path)}
                                 alt={''}
                             />
                         </div>

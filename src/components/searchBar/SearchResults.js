@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router';
 
 import colors from '../../styles/colors';
-import config from '../../config/tmdbConfig.json';
+import createImageUrl from '../../helpers/createImageUrl';
 
 export default function SearchResults({ results }) {
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ export default function SearchResults({ results }) {
                         }
                     >
                         <img
-                            src={`${config.images.secure_base_url}${config.images.poster_sizes[6]}${result.poster_path}`}
+                            src={createImageUrl(result.poster_path)}
                             alt={''}
                         />
                         {result.title || result.name}
