@@ -2,12 +2,14 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { getPopularMovies, getPopularTvShows } from '../../services/tmdbApi';
 import config from '../../config/tmdbConfig.json';
+import { useNavigate } from 'react-router';
 
 export default function Movies({ category }) {
     const [movies, setMovies] = useState({
         movies: [],
         tvShows: [],
     });
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (category === 'movies') {
@@ -27,7 +29,7 @@ export default function Movies({ category }) {
     return (
         <MoviesContainer>
             {movies[category].map((movie, i) => (
-                <div key={i}>
+                <div key={i} onClick={() => navigate(`/movie/${movie.id}`)}>
                     <img
                         src={`${config.images.secure_base_url}${config.images.poster_sizes[6]}${movie.poster_path}`}
                         alt={movie.title || movie.name}

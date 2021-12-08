@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import GlobalStyle from './styles/globalStyles';
-import { Home, NavBar } from './components';
+import { Home, NavBar, Movie } from './components';
 
 export default function App() {
     return (
@@ -8,6 +8,7 @@ export default function App() {
             <GlobalStyle />
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/movie/:id" element={<Movie />} />
             </Routes>
             <NavBar />
         </BrowserRouter>
