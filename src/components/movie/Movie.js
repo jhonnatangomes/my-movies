@@ -1,11 +1,12 @@
+import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router';
-import styled from 'styled-components';
+
 import { PageContainer } from '../shared';
-import colors from '../../styles/colors';
 import { getDetails } from '../../services/getInfo';
-import config from '../../config/tmdbConfig.json';
 import { RunTimeAndScore, ReleaseDateAndGenres, AvailableStreams } from '..';
+import colors from '../../styles/colors';
+import config from '../../config/tmdbConfig.json';
 
 export default function Movie() {
     const [details, setDetails] = useState(null);

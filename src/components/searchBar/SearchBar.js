@@ -1,17 +1,16 @@
 import styled from 'styled-components';
 import { AiOutlineSearch } from 'react-icons/ai';
-import colors from '../../styles/colors';
 import { useState } from 'react';
 import { DebounceInput } from 'react-debounce-input';
+
 import { searchMulti } from '../../services/tmdbApi';
-import config from '../../config/tmdbConfig.json';
-import { useNavigate } from 'react-router';
+import SearchResults from './SearchResults';
+import colors from '../../styles/colors';
 
 export default function SearchBar() {
     const [openInput, setOpenInput] = useState(false);
     const [search, setSearch] = useState('');
     const [results, setResults] = useState(null);
-    const navigate = useNavigate();
 
     function openInputBox(e) {
         if (e.target.value.length) {
@@ -37,29 +36,7 @@ export default function SearchBar() {
                 debounceTimeout={300}
                 onChange={openInputBox}
             />
-            {openInput ? (
-                <SearchResults>
-                    {results &&
-                        results.results.map((result) => (
-                            <div
-                                key={result.id}
-                                onClick={() =>
-                                    navigate(
-                                        `/${result.media_type}/${result.id}`
-                                    )
-                                }
-                            >
-                                <img
-                                    src={`${config.images.secure_base_url}${config.images.poster_sizes[6]}${result.poster_path}`}
-                                    alt={''}
-                                />
-                                {result.title || result.name}
-                            </div>
-                        ))}
-                </SearchResults>
-            ) : (
-                ''
-            )}
+            {openInput ? <SearchResults results={results} /> : ''}
         </InputAndSearch>
     );
 }
@@ -88,31 +65,4 @@ const Input = styled(DebounceInput)`
     line-height: 16px;
     letter-spacing: 0.01em;
     color: ${colors.inputGray};
-`;
-
-const SearchResults = styled.div`
-    width: 100%;
-    background-color: ${colors.inputBlack};
-    border-radius: 0 0 20px 20px;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    line-height: 16px;
-    letter-spacing: 0.01em;
-    color: ${colors.inputGray};
-    max-height: 144px;
-    overflow: auto;
-
-    div {
-        height: 48px;
-        padding: 16px 0 16px 52px;
-        position: relative;
-
-        img {
-            position: absolute;
-            left: 12px;
-            top: 12px;
-            width: 24px;
-            height: 24px;
-        }
-    }
 `;

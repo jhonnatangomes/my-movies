@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+
 import config from '../../config/tmdbConfig.json';
 import { getHomePageInfo } from '../../services/getInfo';
 
