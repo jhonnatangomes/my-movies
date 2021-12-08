@@ -3,24 +3,38 @@ import { useLocation, useParams } from 'react-router';
 import styled from 'styled-components';
 import { AiOutlineClockCircle, AiFillStar } from 'react-icons/ai';
 import config from '../../config/tmdbConfig.json';
-import { getMovieDetails, getTvShowDetails } from '../../services/tmdbApi';
+import {
+    getMovieDetails,
+    getTvShowDetails,
+    getMovieWatchProviders,
+    getTvShowProviders,
+} from '../../services/tmdbApi';
 import { PageContainer } from '../shared';
 import convertDate from '../../helpers/convertDate';
 import colors from '../../styles/colors';
 
 export default function Movie() {
     const [details, setDetails] = useState(null);
+    const [watchProviders, setWatchProviders] = useState(null);
     const { id } = useParams();
     const path = useLocation();
 
     useEffect(() => {
         if (path.pathname.includes('movie')) {
             const promise = getMovieDetails(id);
+            const watchProvidersPromise = getMovieWatchProviders(id);
             promise.then((res) => setDetails(res.data));
+            watchProvidersPromise.then((res) =>
+                setWatchProviders(res.data.results.BR)
+            );
         }
         if (path.pathname.includes('tv')) {
             const promise = getTvShowDetails(id);
+            const watchProvidersPromise = getTvShowProviders(id);
             promise.then((res) => setDetails(res.data));
+            watchProvidersPromise.then((res) =>
+                setWatchProviders(res.data.results.BR)
+            );
         }
     }, []);
 
@@ -69,6 +83,21 @@ export default function Movie() {
                         </Genres>
                     </div>
                 </ReleaseDateAndGenres>
+                <DivisionLine />
+                <AvailableStreams>
+                    <span>Disponível em</span>
+                    <Streams>
+                        {watchProviders &&
+                            watchProviders.flatrate.map((stream, i) => (
+                                <div key={i}>
+                                    <img
+                                        src={`${config.images.secure_base_url}${config.images.logo_sizes[6]}${stream.logo_path}`}
+                                        alt={''}
+                                    />
+                                </div>
+                            ))}
+                    </Streams>
+                </AvailableStreams>
                 <DivisionLine />
                 <Description>
                     <span>Sinopse</span>
@@ -154,6 +183,27 @@ const Genre = styled.div`
     letter-spacing: 0.02em;
     color: ${colors.runTimeGray};
     line-height: 14.4px;
+`;
+
+const AvailableStreams = styled.div`
+    margin: 16px 0 4px 0;
+`;
+
+const Streams = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 12px;
+
+    div {
+        margin-right: 12px;
+        margin-bottom: 10px;
+
+        img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+        }
+    }
 `;
 
 const Description = styled.div`

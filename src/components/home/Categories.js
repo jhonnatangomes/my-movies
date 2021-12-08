@@ -1,9 +1,18 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import colors from '../../styles/colors';
+import { useEffect } from 'react/cjs/react.development';
 
-export default function Categories({ setCategory }) {
-    const [selected, setSelected] = useState([true, false]);
+export default function Categories({ category, setCategory }) {
+    const [selected, setSelected] = useState([false, false]);
+
+    useEffect(() => {
+        if (category === 'movie') {
+            setSelected([true, false]);
+        } else {
+            setSelected([false, true]);
+        }
+    }, []);
 
     function handleClick(i) {
         const newSelected = [false, false];

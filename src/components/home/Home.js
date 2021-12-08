@@ -5,14 +5,15 @@ import SearchBar from '../searchBar/SearchBar';
 import Categories from './Categories';
 import Movies from './Movies';
 
-export default function Home() {
-    const [category, setCategory] = useState('movie');
-
+export default function Home({ category, setCategory }) {
     return (
         <PageContainer>
             <Title>Encontre filmes, séries de TV e mais...</Title>
             <SearchBar />
-            <Categories setCategory={setCategory}></Categories>
+            <Categories
+                category={category}
+                setCategory={setCategory}
+            ></Categories>
             <Movies category={category} />
         </PageContainer>
     );

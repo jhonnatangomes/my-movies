@@ -50,28 +50,13 @@ const MoviesContainer = styled.div`
     margin-top: 16px;
     justify-content: space-between;
 
-    & > div:nth-child(4n),
-    & > div:nth-child(4n + 1) {
+    & > div {
         width: 154px;
         margin-bottom: 20px;
 
         img {
             width: 100%;
             height: 184px;
-            object-fit: cover;
-            border-radius: 20px;
-            margin-bottom: 12px;
-        }
-    }
-
-    & > div:nth-child(4n + 2),
-    & > div:nth-child(4n + 3) {
-        width: 154px;
-        margin-bottom: 20px;
-
-        img {
-            width: 100%;
-            height: 160px;
             object-fit: cover;
             border-radius: 20px;
             margin-bottom: 12px;
