@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { getPopularMovies, getPopularTvShows } from '../../services/tmdbApi';
-import config from '../../config/tmdbConfig.json';
 import { useNavigate } from 'react-router';
+import config from '../../config/tmdbConfig.json';
+import { getHomePageInfo } from '../../services/getInfo';
 
 export default function Movies({ category }) {
     const [movies, setMovies] = useState({
@@ -12,18 +12,10 @@ export default function Movies({ category }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (category === 'movie') {
-            const promise = getPopularMovies();
-            promise.then((res) =>
-                setMovies({ ...movies, movie: res.data.results })
-            );
-        }
-        if (category === 'tv') {
-            const promise = getPopularTvShows();
-            promise.then((res) =>
-                setMovies({ ...movies, tv: res.data.results })
-            );
-        }
+        (async function () {
+            const result = await getHomePageInfo(category);
+            setMovies(result);
+        })();
     }, [category]);
 
     return (

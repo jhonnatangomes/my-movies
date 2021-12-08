@@ -1,9 +1,6 @@
 import styled from 'styled-components';
-import { useState } from 'react';
 import { PageContainer } from '../shared';
-import SearchBar from '../searchBar/SearchBar';
-import Categories from './Categories';
-import Movies from './Movies';
+import { SearchBar, Categories, Movies } from '..';
 
 export default function Home({ category, setCategory }) {
     return (

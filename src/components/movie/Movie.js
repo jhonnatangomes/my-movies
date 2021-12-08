@@ -2,16 +2,11 @@ import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router';
 import styled from 'styled-components';
 import { AiOutlineClockCircle, AiFillStar } from 'react-icons/ai';
-import config from '../../config/tmdbConfig.json';
-import {
-    getMovieDetails,
-    getTvShowDetails,
-    getMovieWatchProviders,
-    getTvShowProviders,
-} from '../../services/tmdbApi';
 import { PageContainer } from '../shared';
 import convertDate from '../../helpers/convertDate';
 import colors from '../../styles/colors';
+import { getDetails } from '../../services/getInfo';
+import config from '../../config/tmdbConfig.json';
 
 export default function Movie() {
     const [details, setDetails] = useState(null);
@@ -20,22 +15,11 @@ export default function Movie() {
     const path = useLocation();
 
     useEffect(() => {
-        if (path.pathname.includes('movie')) {
-            const promise = getMovieDetails(id);
-            const watchProvidersPromise = getMovieWatchProviders(id);
-            promise.then((res) => setDetails(res.data));
-            watchProvidersPromise.then((res) =>
-                setWatchProviders(res.data.results.BR)
-            );
-        }
-        if (path.pathname.includes('tv')) {
-            const promise = getTvShowDetails(id);
-            const watchProvidersPromise = getTvShowProviders(id);
-            promise.then((res) => setDetails(res.data));
-            watchProvidersPromise.then((res) =>
-                setWatchProviders(res.data.results.BR)
-            );
-        }
+        (async function () {
+            const result = await getDetails(path, id);
+            setDetails(result.details);
+            setWatchProviders(result.watchProviders);
+        })();
     }, []);
 
     return (
