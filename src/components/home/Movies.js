@@ -6,22 +6,22 @@ import { useNavigate } from 'react-router';
 
 export default function Movies({ category }) {
     const [movies, setMovies] = useState({
-        movies: [],
-        tvShows: [],
+        movie: [],
+        tv: [],
     });
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (category === 'movies') {
+        if (category === 'movie') {
             const promise = getPopularMovies();
             promise.then((res) =>
-                setMovies({ ...movies, movies: res.data.results })
+                setMovies({ ...movies, movie: res.data.results })
             );
         }
-        if (category === 'tvShows') {
+        if (category === 'tv') {
             const promise = getPopularTvShows();
             promise.then((res) =>
-                setMovies({ ...movies, tvShows: res.data.results })
+                setMovies({ ...movies, tv: res.data.results })
             );
         }
     }, [category]);
@@ -31,9 +31,7 @@ export default function Movies({ category }) {
             {movies[category].map((movie, i) => (
                 <div
                     key={i}
-                    onClick={() =>
-                        navigate(`/${category.slice(0, -1)}/${movie.id}`)
-                    }
+                    onClick={() => navigate(`/${category}/${movie.id}`)}
                 >
                     <img
                         src={`${config.images.secure_base_url}${config.images.poster_sizes[6]}${movie.poster_path}`}

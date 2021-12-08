@@ -18,7 +18,7 @@ export default function Movie() {
             const promise = getMovieDetails(id);
             promise.then((res) => setDetails(res.data));
         }
-        if (path.pathname.includes('tvShow')) {
+        if (path.pathname.includes('tv')) {
             const promise = getTvShowDetails(id);
             promise.then((res) => setDetails(res.data));
         }

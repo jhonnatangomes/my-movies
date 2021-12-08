@@ -9,15 +9,10 @@ export default function Categories({ setCategory }) {
         const newSelected = [false, false];
         newSelected[i] = true;
         setSelected(newSelected);
-        switch (i) {
-            case 0:
-                setCategory('movies');
-                break;
-            case 1:
-                setCategory('tvShows');
-                break;
-            default:
-                break;
+        if (i === 0) {
+            setCategory('movie');
+        } else {
+            setCategory('tv');
         }
     }
 
