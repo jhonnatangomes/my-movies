@@ -27,29 +27,31 @@ export default function Movie() {
             setWatchProviders(result.watchProviders);
             setRelated(result.related);
         })();
-    }, []);
+    }, [id]);
 
     return (
         <>
             {details ? (
-                <PosterImg src={createImageUrl(details.backdrop_path)} />
+                <>
+                    <PosterImg src={createImageUrl(details.backdrop_path)} />
+                    <PageContainer>
+                        <MovieTitle>{details.title || details.name}</MovieTitle>
+                        <RunTimeAndScore details={details} />
+                        <DivisionLine />
+                        <ReleaseDateAndGenres details={details} />
+                        <DivisionLine />
+                        <AvailableStreams watchProviders={watchProviders} />
+                        <DivisionLine />
+                        <Description>
+                            <span>Sinopse</span>
+                            <p>{details.overview}</p>
+                        </Description>
+                        <RelatedMovies related={related} />
+                    </PageContainer>
+                </>
             ) : (
                 ''
             )}
-            <PageContainer>
-                <MovieTitle>{details?.title || details?.name}</MovieTitle>
-                <RunTimeAndScore details={details} />
-                <DivisionLine />
-                <ReleaseDateAndGenres details={details} />
-                <DivisionLine />
-                <AvailableStreams watchProviders={watchProviders} />
-                <DivisionLine />
-                <Description>
-                    <span>Sinopse</span>
-                    <p>{details?.overview}</p>
-                </Description>
-                <RelatedMovies related={related} />
-            </PageContainer>
         </>
     );
 }

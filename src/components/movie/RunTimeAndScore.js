@@ -8,12 +8,12 @@ export default function RunTimeAndScore({ details }) {
             <div>
                 <AiOutlineClockCircle />
                 <span>
-                    {details?.runtime || details?.episode_run_time} minutos
+                    {details.runtime || details.episode_run_time} minutos
                 </span>
             </div>
             <div>
                 <AiFillStar />
-                <span>{details?.vote_average} (TMDb)</span>
+                <span>{details.vote_average} (TMDb)</span>
             </div>
         </Container>
     );

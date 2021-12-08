@@ -1,9 +1,18 @@
 import styled from 'styled-components';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
+import createImageUrl from '../../helpers/createImageUrl';
+import colors from '../../styles/colors';
 
 export default function RelatedMovies({ related }) {
     const path = useLocation();
-    console.log(related);
+    const navigate = useNavigate();
+
+    function handleClick(id) {
+        if (path.pathname.includes('movie')) {
+            navigate(`/movie/${id}`);
+        }
+    }
+
     return (
         <Container>
             <span>
@@ -11,7 +20,22 @@ export default function RelatedMovies({ related }) {
                     ? 'Filmes relacionados'
                     : 'Séries relacionadas'}
             </span>
-            <Movies></Movies>
+            <Movies>
+                {related &&
+                    related.map((movie) => (
+                        <Movie
+                            key={movie.id}
+                            onClick={() => handleClick(movie.id)}
+                        >
+                            <img
+                                src={createImageUrl(movie.poster_path)}
+                                alt={''}
+                            />
+                            <span>{movie.title} </span>
+                            <span>({movie.release_date.split('-')[0]})</span>
+                        </Movie>
+                    ))}
+            </Movies>
         </Container>
     );
 }
@@ -36,11 +60,16 @@ const Movie = styled.div`
         height: 106px;
         object-fit: cover;
         margin-bottom: 12px;
+        border-radius: 20px;
     }
 
     span {
         font-size: 12px;
         line-height: 14.4px;
         letter-spacing: 0.02em;
+    }
+
+    span:last-child {
+        color: ${colors.runTimeGray};
     }
 `;

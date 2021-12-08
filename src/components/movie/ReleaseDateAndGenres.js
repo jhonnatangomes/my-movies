@@ -11,14 +11,14 @@ export default function ReleaseDateAndGenres({ details }) {
                     lançamento
                 </span>
                 <p>
-                    {convertDate(details?.release_date) ||
-                        convertDate(details?.first_air_date)}
+                    {convertDate(details.release_date) ||
+                        convertDate(details.first_air_date)}
                 </p>
             </div>
             <div>
                 <span>Gêneros</span>
                 <Genres>
-                    {details?.genres.map((genre, i) => (
+                    {details.genres.map((genre, i) => (
                         <Genre key={i}>{genre.name}</Genre>
                     ))}
                 </Genres>
