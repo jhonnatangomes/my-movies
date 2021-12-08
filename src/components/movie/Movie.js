@@ -13,8 +13,6 @@ export default function Movie() {
     const { id } = useParams();
     const path = useLocation();
 
-    console.log(details);
-
     useEffect(() => {
         if (path.pathname.includes('movie')) {
             const promise = getMovieDetails(id);

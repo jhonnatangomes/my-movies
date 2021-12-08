@@ -2,11 +2,12 @@ import styled from 'styled-components';
 import colors from '../../styles/colors';
 import { AiFillHome, AiOutlineUser } from 'react-icons/ai';
 import { FaRandom } from 'react-icons/fa';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import SvgElement from './SvgElement';
 
 export default function NavBar() {
     const path = useLocation();
+    const navigate = useNavigate();
     return (
         <>
             <SvgElement />
@@ -26,6 +27,7 @@ export default function NavBar() {
                                 ? 'url(#orange-gradient)'
                                 : '',
                     }}
+                    onClick={() => navigate('/')}
                 />
                 <AiOutlineUser
                     style={{
