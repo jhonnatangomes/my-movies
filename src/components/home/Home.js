@@ -1,20 +1,17 @@
 import styled from 'styled-components';
-import { AiOutlineSearch } from 'react-icons/ai';
 import { useState } from 'react';
-import { PageContainer, Input } from '../shared';
+import { PageContainer } from '../shared';
+import SearchBar from '../searchBar/SearchBar';
 import Categories from './Categories';
 import Movies from './Movies';
 
 export default function Home() {
-    const [category, setCategory] = useState('movies');
+    const [category, setCategory] = useState('movie');
 
     return (
         <PageContainer>
             <Title>Encontre filmes, séries de TV e mais...</Title>
-            <InputAndSearch>
-                <SearchIcon />
-                <Input placeholder="Digite um filme..." />
-            </InputAndSearch>
+            <SearchBar />
             <Categories setCategory={setCategory}></Categories>
             <Movies category={category} />
         </PageContainer>
@@ -28,15 +25,4 @@ const Title = styled.p`
     letter-spacing: 0.02em;
     margin-top: 36px;
     margin-bottom: 20px;
-`;
-
-const InputAndSearch = styled.div`
-    position: relative;
-`;
-
-const SearchIcon = styled(AiOutlineSearch)`
-    position: absolute;
-    font-size: 24px;
-    left: 12px;
-    top: 12px;
 `;

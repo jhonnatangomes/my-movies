@@ -26,8 +26,11 @@ const getMovieDetails = (movieId) =>
 const getTvShowDetails = (tvShowId) =>
     axiosBase.get(`/tv/${tvShowId}?language=pt-BR`, headerConfig());
 
-const getRelatedMovies = (movieId) =>
-    axiosBase.get(`/movie/${movieId}/similar?language=pt-BR`);
+const searchMulti = (query) =>
+    axiosBase.get(
+        `/search/multi?language=pt-BR&query=${query}`,
+        headerConfig()
+    );
 
 export {
     getPopularMovies,
@@ -35,5 +38,5 @@ export {
     getPopularTvShows,
     getMovieDetails,
     getTvShowDetails,
-    getRelatedMovies,
+    searchMulti,
 };
