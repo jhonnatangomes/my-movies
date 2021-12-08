@@ -4,3 +4,6 @@ export { default as Movie } from './movie/Movie';
 export { default as Categories } from './home/Categories';
 export { default as Movies } from './home/Movies';
 export { default as SearchBar } from './searchBar/SearchBar';
+export { default as RunTimeAndScore } from './movie/RunTimeAndScore';
+export { default as ReleaseDateAndGenres } from './movie/ReleaseDateAndGenres';
+export { default as AvailableStreams } from './movie/AvailableStreams';

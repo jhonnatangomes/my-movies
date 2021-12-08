@@ -28,8 +28,6 @@ async function getDetails(path, id) {
     if (path.pathname.includes('movie')) {
         const movieDetails = await getMovieDetails(id);
         const watchProviders = await getMovieWatchProviders(id);
-        console.log(movieDetails);
-        console.log(watchProviders);
         return {
             details: movieDetails.data,
             watchProviders: watchProviders.data.results.BR,
