@@ -3,13 +3,17 @@ import { useLocation, useNavigate } from 'react-router';
 import createImageUrl from '../../helpers/createImageUrl';
 import colors from '../../styles/colors';
 
-export default function RelatedMovies({ related }) {
+export default function RelatedMovies({ related, setDetails }) {
     const path = useLocation();
     const navigate = useNavigate();
 
     function handleClick(id) {
+        setDetails(null);
         if (path.pathname.includes('movie')) {
             navigate(`/movie/${id}`);
+        }
+        if (path.pathname.includes('tv')) {
+            navigate(`/tv/${id}`);
         }
     }
 
@@ -31,8 +35,13 @@ export default function RelatedMovies({ related }) {
                                 src={createImageUrl(movie.poster_path)}
                                 alt={''}
                             />
-                            <span>{movie.title} </span>
-                            <span>({movie.release_date.split('-')[0]})</span>
+                            <span>{movie.title || movie.name} </span>
+                            <span>
+                                (
+                                {movie.release_date?.split('-')[0] ||
+                                    movie.first_air_date?.split('-')[0]}
+                                )
+                            </span>
                         </Movie>
                     ))}
             </Movies>
