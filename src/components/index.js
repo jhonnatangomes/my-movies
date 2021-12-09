@@ -8,3 +8,4 @@ export { default as RunTimeAndScore } from './movie/RunTimeAndScore';
 export { default as ReleaseDateAndGenres } from './movie/ReleaseDateAndGenres';
 export { default as AvailableStreams } from './movie/AvailableStreams';
 export { default as RelatedMovies } from './movie/RelatedMovies';
+export { default as Loading } from './loading/Loading';

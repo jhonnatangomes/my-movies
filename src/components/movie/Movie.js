@@ -9,6 +9,7 @@ import {
     ReleaseDateAndGenres,
     AvailableStreams,
     RelatedMovies,
+    Loading,
 } from '..';
 import colors from '../../styles/colors';
 import createImageUrl from '../../helpers/createImageUrl';
@@ -41,16 +42,18 @@ export default function Movie() {
                         <ReleaseDateAndGenres details={details} />
                         <DivisionLine />
                         <AvailableStreams watchProviders={watchProviders} />
-                        <DivisionLine />
                         <Description>
                             <span>Sinopse</span>
                             <p>{details.overview}</p>
                         </Description>
-                        <RelatedMovies related={related} />
+                        <RelatedMovies
+                            related={related}
+                            setDetails={setDetails}
+                        />
                     </PageContainer>
                 </>
             ) : (
-                ''
+                <Loading />
             )}
         </>
     );

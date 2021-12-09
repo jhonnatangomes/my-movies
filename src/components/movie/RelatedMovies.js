@@ -3,12 +3,13 @@ import { useLocation, useNavigate } from 'react-router';
 import createImageUrl from '../../helpers/createImageUrl';
 import colors from '../../styles/colors';
 
-export default function RelatedMovies({ related }) {
+export default function RelatedMovies({ related, setDetails }) {
     const path = useLocation();
     const navigate = useNavigate();
 
     function handleClick(id) {
         if (path.pathname.includes('movie')) {
+            setDetails(null);
             navigate(`/movie/${id}`);
         }
     }

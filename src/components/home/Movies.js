@@ -4,11 +4,12 @@ import { useNavigate } from 'react-router';
 
 import { getHomePageInfo } from '../../services/getInfo';
 import createImageUrl from '../../helpers/createImageUrl';
+import { Loading } from '..';
 
 export default function Movies({ category }) {
     const [movies, setMovies] = useState({
-        movie: [],
-        tv: [],
+        movie: null,
+        tv: null,
     });
     const navigate = useNavigate();
 
@@ -21,18 +22,22 @@ export default function Movies({ category }) {
 
     return (
         <MoviesContainer>
-            {movies[category].map((movie, i) => (
-                <div
-                    key={i}
-                    onClick={() => navigate(`/${category}/${movie.id}`)}
-                >
-                    <img
-                        src={createImageUrl(movie.poster_path)}
-                        alt={movie.title || movie.name}
-                    />
-                    <span>{movie.title || movie.name}</span>
-                </div>
-            ))}
+            {movies[category] ? (
+                movies[category].map((movie, i) => (
+                    <div
+                        key={i}
+                        onClick={() => navigate(`/${category}/${movie.id}`)}
+                    >
+                        <img
+                            src={createImageUrl(movie.poster_path)}
+                            alt={movie.title || movie.name}
+                        />
+                        <span>{movie.title || movie.name}</span>
+                    </div>
+                ))
+            ) : (
+                <Loading />
+            )}
         </MoviesContainer>
     );
 }
