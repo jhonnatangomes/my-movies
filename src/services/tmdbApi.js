@@ -17,6 +17,12 @@ const getConfiguration = () => axiosBase.get('/configuration', headerConfig());
 const getPopularMovies = () =>
     axiosBase.get('/movie/popular?language=pt-BR', headerConfig());
 
+const getRelatedMovies = (movieId) =>
+    axiosBase.get(
+        `/movie/${movieId}/recommendations?language=pt-BR`,
+        headerConfig()
+    );
+
 const getPopularTvShows = () =>
     axiosBase.get('/tv/popular?language=pt-BR', headerConfig());
 
@@ -39,8 +45,9 @@ const searchMulti = (query) =>
     );
 
 export {
-    getPopularMovies,
     getConfiguration,
+    getPopularMovies,
+    getRelatedMovies,
     getPopularTvShows,
     getMovieDetails,
     getTvShowDetails,

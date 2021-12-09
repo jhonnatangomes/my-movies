@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import colors from '../../styles/colors';
-import { useEffect } from 'react';
 
 export default function Categories({ category, setCategory }) {
     const [selected, setSelected] = useState([false, false]);
@@ -50,7 +49,7 @@ const CategoriesContainer = styled.div`
 const Category = styled.div`
     span {
         background: ${({ selected }) =>
-            selected ? colors.gradientSelected : 'white'};
+            selected ? colors.gradientSelected : colors.textGray};
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         transition: background 0.5s ease;

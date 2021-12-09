@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import colors from '../../styles/colors';
 import { AiFillHome, AiOutlineUser } from 'react-icons/ai';
 import { FaRandom } from 'react-icons/fa';
 import { useLocation, useNavigate } from 'react-router';
+
 import SvgElement from './SvgElement';
+import colors from '../../styles/colors';
 
 export default function NavBar() {
     const path = useLocation();
