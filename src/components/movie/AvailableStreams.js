@@ -4,9 +4,16 @@ import createImageUrl from '../../helpers/createImageUrl';
 export default function AvailableStreams({ watchProviders }) {
     return (
         <Container>
-            <span>Disponível em</span>
+            <span>
+                {watchProviders &&
+                watchProviders.flatrate &&
+                watchProviders.flatrate.length
+                    ? 'Disponível em'
+                    : 'Não disponível em nenhum serviço de stream'}
+            </span>
             <Streams>
                 {watchProviders &&
+                    watchProviders.flatrate &&
                     watchProviders.flatrate.map((stream, i) => (
                         <div key={i}>
                             <img
