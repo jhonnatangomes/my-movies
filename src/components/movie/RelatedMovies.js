@@ -8,9 +8,12 @@ export default function RelatedMovies({ related, setDetails }) {
     const navigate = useNavigate();
 
     function handleClick(id) {
+        setDetails(null);
         if (path.pathname.includes('movie')) {
-            setDetails(null);
             navigate(`/movie/${id}`);
+        }
+        if (path.pathname.includes('tv')) {
+            navigate(`/tv/${id}`);
         }
     }
 
@@ -32,8 +35,13 @@ export default function RelatedMovies({ related, setDetails }) {
                                 src={createImageUrl(movie.poster_path)}
                                 alt={''}
                             />
-                            <span>{movie.title} </span>
-                            <span>({movie.release_date.split('-')[0]})</span>
+                            <span>{movie.title || movie.name} </span>
+                            <span>
+                                (
+                                {movie.release_date?.split('-')[0] ||
+                                    movie.first_air_date?.split('-')[0]}
+                                )
+                            </span>
                         </Movie>
                     ))}
             </Movies>

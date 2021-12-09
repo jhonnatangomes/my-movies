@@ -6,6 +6,7 @@ import {
     getTvShowDetails,
     getTvShowProviders,
     getRelatedMovies,
+    getRelatedTvShows,
 } from './tmdbApi';
 
 async function getHomePageInfo(category) {
@@ -39,9 +40,11 @@ async function getDetails(path, id) {
     if (path.pathname.includes('tv')) {
         const tvShowDetails = await getTvShowDetails(id);
         const watchProviders = await getTvShowProviders(id);
+        const relatedTvShows = await getRelatedTvShows(id);
         return {
             details: tvShowDetails.data,
             watchProviders: watchProviders.data.results.BR,
+            related: relatedTvShows.data.results,
         };
     }
 }
