@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router';
 
 import { PageContainer } from '../shared';
@@ -13,15 +13,28 @@ import {
 } from '..';
 import colors from '../../styles/colors';
 import createImageUrl from '../../helpers/createImageUrl';
+import LastMovieContext from '../../contexts/lastMovieContext';
+import CategoryContext from '../../contexts/categoryContext';
 
 export default function Movie() {
     const [details, setDetails] = useState(null);
     const [watchProviders, setWatchProviders] = useState(null);
     const [related, setRelated] = useState(null);
+    const { setLastMovieClicked, setLastTvShowClicked } =
+        useContext(LastMovieContext);
+    const { category } = useContext(CategoryContext);
     const { id } = useParams();
     const path = useLocation();
 
     useEffect(() => {
+        if (category === 'movie') {
+            setLastMovieClicked(id);
+            localStorage.setItem('lastMovieClicked', id);
+        }
+        if (category === 'tv') {
+            setLastTvShowClicked(id);
+            localStorage.setItem('lastTvShowClicked', id);
+        }
         (async function () {
             const result = await getDetails(path, id);
             setDetails(result.details);
