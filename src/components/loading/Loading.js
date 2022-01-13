@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { Orbitals } from 'react-spinners-css';
+import colors from '../../styles/colors';
 
 export default function Loading() {
     return (
         <LoaderContainer>
-            <Orbitals color="#f75f46" />
+            <Orbitals color={colors.loadingOrange} />
         </LoaderContainer>
     );
 }

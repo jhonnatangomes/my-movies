@@ -50,6 +50,8 @@ const searchMulti = (query) =>
         headerConfig()
     );
 
+const getRandomMovie = () => axiosBase.get('/discover/movie', headerConfig());
+
 export {
     getConfiguration,
     getPopularMovies,
@@ -61,4 +63,5 @@ export {
     getMovieWatchProviders,
     getTvShowProviders,
     searchMulti,
+    getRandomMovie,
 };

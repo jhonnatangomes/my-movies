@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import colors from '../../styles/colors';
 
 const PageContainer = styled.div`
     padding: 0 24px;
