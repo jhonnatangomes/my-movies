@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# My Movies
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to my movies, an app where you can search and discover new movies and tv shows.
 
-## Available Scripts
+## How it works
 
-In the project directory, you can run:
+The home page presents the user with 20 movies and a search bar. This movie list comes from [TMDB] (The Movie Database). This list contains the 20 most popular movies currently and it is updated weekly. You can also start typing on the search bar to find the movie or tv show you want.
 
-### `npm start`
+Another feature is the random recommendation. After you have clicked on at least one movie or tv show you can see random recommendations by going to the leftmost icon on the menu bar.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+A favorites list and login feature is going to be implemented soon, so that users can have their favorites information attached to their account.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The UI of this project was based on this figma community [design].
 
-### `npm test`
+##### Note
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+All the movie information existing on this project comes from TMDB [API].
 
-### `npm run build`
+## How to run
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+You can either use the deployed [version] in Vercel or you can clone the repository to your machine and run it.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+In case you chose the later, first clone the repository and enter in the newly created directory:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    git clone https://github.com/jhonnatangomes/my-movies
+    cd my-movies
 
-### `npm run eject`
+Then, install dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    npm install
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+You can then start the project with
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    npm start
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[tmdb]: https://www.themoviedb.org/
+[api]: https://developers.themoviedb.org/3/getting-started
+[version]: http://my-movies-three.vercel.app/
+[design]: https://www.figma.com/community/file/1006119758184707289
