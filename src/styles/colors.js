@@ -11,6 +11,7 @@ const colors = {
     genresBlack: '#FAF0CA0D',
     genresGradient:
         'linear-gradient(141.08deg, rgba(255, 255, 255, 0.25) 13.56%, rgba(255, 255, 255, 0) 85.76%);',
+    loadingOrange: '#f75f46',
 };
 
 export default colors;

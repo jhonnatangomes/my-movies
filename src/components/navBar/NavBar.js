@@ -20,6 +20,7 @@ export default function NavBar() {
                                 ? 'url(#orange-gradient)'
                                 : '',
                     }}
+                    onClick={() => navigate('/random')}
                 />
                 <AiFillHome
                     style={{
